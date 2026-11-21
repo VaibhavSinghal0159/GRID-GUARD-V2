@@ -1,0 +1,16 @@
+{
+  "model": "GridGuard 2-Channel 2D-CNN (ONNX)",
+  "dataset": "Full SGCC (42,372 consumers x 1,029 days)",
+  "split_strategy": "60% Train / 20% Val / 20% Holdout Test (stratified by consumer)",
+  "train_log1p_mean": 1.175312,
+  "train_log1p_std": 1.187414,
+  "test_roc_auc": 0.834,
+  "test_pr_auc": 0.4233,
+  "baseline_pr_auc": 0.0853,
+  "top_k_precision": {
+    "top_10": 0.9,
+    "top_50": 0.82,
+    "top_100": 0.75,
+    "top_500": 0.512
+  }
+}

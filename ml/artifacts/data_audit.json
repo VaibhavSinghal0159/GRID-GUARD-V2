@@ -1,0 +1,20 @@
+{
+  "source_file": "data set.csv",
+  "total_consumers": 42372,
+  "unique_consumers": 42372,
+  "total_days": 1034,
+  "date_range": {
+    "start": "2014-01-01",
+    "end": "2016-10-31"
+  },
+  "theft_rate_pct": 8.53,
+  "missing_cells_pct": 25.64,
+  "all_nan_rows": 5,
+  "negative_cells": 0,
+  "kwh_p50_p95_p99_max": [
+    4.59,
+    25.24,
+    69.79,
+    800003.32
+  ]
+}
