@@ -35,6 +35,7 @@ def test_single_predict_preserves_missing_mask(client):
     body = res.json()
     assert 0.0 <= body["theft_probability"] <= 1.0
     assert body["signals"]["missing_day_ratio"] > 0.09
+    assert body["signals"]["zero_day_ratio"] == 0.0
     assert "not proof of electricity theft" in body["disclaimer"].lower()
 
 

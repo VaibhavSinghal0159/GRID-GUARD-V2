@@ -73,14 +73,37 @@ class GridGuardONNXEngine:
             recent = non_neg[i, -90:][missing_mask[i, -90:] == 0]
             recent_mean = float(recent.mean()) if len(recent) > 0 else 0.0
 
+            signals = []
+        for i in range(len(batch_series)):
+            observed_mask = missing_mask[i] == 0
+            valid = non_neg[i][observed_mask]
+            overall_mean = float(valid.mean()) if len(valid) > 0 else 0.0
+            recent = non_neg[i, -90:][missing_mask[i, -90:] == 0]
+            recent_mean = float(recent.mean()) if len(recent) > 0 else 0.0
+            true_zero_ratio = (
+                float((valid == 0).mean()) if len(valid) > 0 else 0.0
+            )
+
+            signals = []
+        for i in range(len(batch_series)):
+            observed_mask = missing_mask[i] == 0
+            valid = non_neg[i][observed_mask]
+            overall_mean = float(valid.mean()) if len(valid) > 0 else 0.0
+            recent = non_neg[i, -90:][missing_mask[i, -90:] == 0]
+            recent_mean = float(recent.mean()) if len(recent) > 0 else 0.0
+            true_zero_ratio = (
+                float((valid == 0).mean()) if len(valid) > 0 else 0.0
+            )
+
             signals.append(
                 {
                     "missing_day_ratio": round(float(missing_mask[i].mean()), 4),
-                    "zero_day_ratio": round(float((non_neg[i] == 0).mean()), 4),
+                    "zero_day_ratio": round(true_zero_ratio, 4),
                     "mean_daily_kwh": round(overall_mean, 2),
                     "recent_90d_ratio": round(recent_mean / (overall_mean + 1e-6), 3),
                 }
             )
+            
         return tensor.astype(np.float32), signals
 
     def predict_batch(
